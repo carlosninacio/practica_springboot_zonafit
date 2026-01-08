@@ -111,6 +111,23 @@ public class ZonaFitApplication implements CommandLineRunner {
                     logger.info("El cliente no existe: " + idCliente);
                 }
             }
+            case 5 -> {
+                logger.info(nl + "--- Eliminar Cliente ---" + nl);
+                logger.info("Ingrese el id cliente: ");
+                var idCliente = Integer.parseInt(consola.nextLine());
+                var cliente = clienteServicio.buscarClientePorId(idCliente);
+                if (cliente != null) {
+                    clienteServicio.eliminarCliente(cliente);
+                    logger.info("Cliente eliminado: " + cliente);
+                } else {
+                    logger.info("El cliente no existe: " + idCliente);
+                }
+            }
+            case 6 -> {
+                logger.info("Hasta Pronto!" + nl + nl);
+                salir = true;
+            }
+            default -> logger.info("Opción no reconocida: " + opcion + nl);
         }
         return salir;
     }
